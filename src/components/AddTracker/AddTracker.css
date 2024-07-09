@@ -1,0 +1,97 @@
+.trackers .modal-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 24px;
+  }
+  .add-tracker form {
+    background: white;
+    width: 50%;
+    margin: auto;
+    padding: 2%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .add-tracker .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .add-tracker .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .add-tracker .form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  .add-tracker .form-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .add-tracker .btn {
+    padding: 10px 20px;
+    background-color: #6f42c1;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .add-tracker .btn:hover {
+    background-color: #5a34a1;
+  }
+  .row-flex {
+    display: flex;
+    justify-content: space-between;
+  }
+ .row-flex .form-group,
+ .row-flex label {
+    width: 48%;
+  }
+
+
+  .add-tracker {
+    padding: 20px;
+  }
+  
+  .row-flex {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  
+  .form-group {
+    flex: 1;
+  }
+  
+  .basic-details,
+  .frequency-cap {
+    margin-bottom: 20px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .form-actions .btn {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  #mui-component-select-cappingTimeframe {
+    padding: 14px !important;
+  }
+  #creativeid-cont > div{
+    height: 51px;
+  }
+  .custom-trackers-field > div > div{
+    height: 51px;
+  }

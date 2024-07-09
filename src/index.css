@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #FBFAFB;
+  overflow: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Add your CSS styles here */
+/* .App {
+  display: flex;
+  background: #F4F9FF;
+  F4F9FF
+  height: 100vh;
+} */
+
+
+.App {
+  background: #F4F9FF;
+  display: flex;
+  height: 100vh; /* Full viewport height */
+}
+
+.navbar {
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  height: 100%; /* Full height of viewport */
+}
+
+.content {
+  flex: 1; /* Take remaining space */
+  padding: 20px;
+  overflow-y: auto; /* Enable scroll if content overflows */
+}
+
+.page-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

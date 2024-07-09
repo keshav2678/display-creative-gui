@@ -1,0 +1,20 @@
+.navbar {
+    background-color: #6f42c1;
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    border-radius: 0;
+    height: 4rem;
+    padding: 10px 20px;
+    align-items: center;
+}
+.navbar-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+}
+
+.log0 {
+    max-width: 100%;
+    height: auto;
+}

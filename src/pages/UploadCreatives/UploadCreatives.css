@@ -1,0 +1,29 @@
+.upload-creatives {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .upload-creatives button {
+    padding: 10px 20px;
+    background-color: #1F4690;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .btn-container {
+    display: flex;
+    align-self: end;
+    margin-top: 32px;
+  }
+  .btn {
+    /* width: 7.5%; */
+  }
+  .upload-creatives button:hover {
+    background-color: #0056b3;
+  }
+  .upload-creatives .btn.cancel-btn {
+    background-color: #dc3545;
+    margin-right: 10px;
+  }
+  

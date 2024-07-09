@@ -1,0 +1,181 @@
+.image-upload {
+    text-align: center;
+    height: 100%;
+  }
+  
+  .upload-box {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+    margin-bottom: 20px;
+    margin: auto;
+    transition: border-color 0.3s, background-color 0.3s;
+    height: 150px;
+    height: 40%;
+    /* width: 95%; */
+  }
+  
+  .upload-box.dragging {
+    border-color: #007bff;
+    background-color: #eaf1fc;
+  }
+  
+  .upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .upload-area {
+    text-align: center;
+  }
+  
+  .upload-area img {
+    width: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .upload-area p {
+    margin: 5px 0;
+  }
+  
+  .upload-area span {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .error-message {
+    color: red;
+    margin-bottom: 10px;
+  }
+  
+  .separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .separator::before,
+  .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .separator:not(:empty)::before {
+    margin-right: 10px;
+  }
+  
+  .separator:not(:empty)::after {
+    margin-left: 10px;
+  }
+  
+  .file-names {
+    margin-top: 10px;
+  }
+  
+  .url-upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .url-upload input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    width: 90%;
+  }
+  
+  .url-upload button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .url-upload button:hover {
+    background-color: #0056b3;
+  }
+  
+
+  .image-preview {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .details {
+    flex-grow: 1;
+  }
+  
+  .details input {
+    width: 100%;
+    height: 22px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    outline: none;
+    padding: 4px 8px;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .actions svg {
+    /* padding: 5px 10px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 3px; */
+    cursor: pointer;
+  }
+  
+  .actions button:hover {
+    background-color: #0056b3;
+  }
+  
+  .image-preview:first-of-type {
+    margin-top: 10px;
+  }
+  .image-preview {
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  }
+  .details-edit {
+    display: flex;
+  }
+  .details-edit .name-edit {
+    width: 45%;
+  }
+  .details-edit .dimension-edit {
+    width: 15%;
+  }
+  .name-edit, 
+  .dimension-edit {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    margin-right: 30px;
+  }
+  .details-edit div label {
+    margin-bottom: 4px;
+  }

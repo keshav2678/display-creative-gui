@@ -1,0 +1,14 @@
+.delete-icon {
+    cursor: pointer;
+    color: red;
+  }
+  .MuiDataGrid-columnHeaders > div {
+    background-color: #530093 !important;
+    color: #ffffff
+  }
+  .creatives .MuiDataGrid-columnHeaderTitleContainer .MuiSvgIcon-root {
+    color: #fff;
+  }
+  .MuiDataGrid-container--bottom {
+    display: none;
+}

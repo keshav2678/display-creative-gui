@@ -1,0 +1,30 @@
+.trackers-btn-container {
+    display: flex;
+    justify-content: right;
+    margin-bottom: 20px;
+}
+.trackers-btn {
+    background-color: #530093;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.delete-icon {
+    cursor: pointer;
+    color: red;
+  }
+  .MuiDataGrid-columnHeaders > div {
+    background-color: #530093 !important;
+    color: #ffffff
+  }
+  .trackers .MuiDataGrid-columnHeaderTitleContainer .MuiSvgIcon-root {
+    color: #fff;
+  }
+  .trackers .MuiDataGrid-filler {
+    display: none;
+}
