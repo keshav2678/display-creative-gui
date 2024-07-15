@@ -3,14 +3,34 @@ import ImagePreview from './ImagePreview';
 import preview from '../../assets/preview.png';
 import './ImageUpload.css';
 
-const ImageUpload = ({ onFilesChange,files, setFiles }) => {
+const ImageUpload = ({ onFilesChange, files, setFiles }) => {
   const [error, setError] = useState('');
   const [url, setUrl] = useState('');
   const [dragging, setDragging] = useState(false);
   const [title, setTitle] = useState('');
 
+  const allowedDimensions = [
+    { width: 468, height: 60 },
+    { width: 250, height: 250 },
+    { width: 728, height: 90 },
+    { width: 970, height: 90 },
+    { width: 200, height: 200 },
+    { width: 320, height: 100 },
+    { width: 120, height: 600 },
+    { width: 160, height: 600 },
+    { width: 300, height: 600 },
+    { width: 300, height: 250 },
+    { width: 336, height: 280 },
+  ];
+
+  const isValidDimension = (width, height) => {
+    return allowedDimensions.some(dim => dim.width === width && dim.height === height);
+  };
+
   const updateImageDimensions = (fileList) => {
-    const updatedFiles = fileList.map(file => {
+    const validFiles = [];
+
+    fileList.forEach((file, index) => {
       if (file.type === 'file') {
         const reader = new FileReader();
         reader.readAsDataURL(file.file);
@@ -18,15 +38,21 @@ const ImageUpload = ({ onFilesChange,files, setFiles }) => {
           const img = new Image();
           img.src = e.target.result;
           img.onload = () => {
-            file.width = img.width;
-            file.height = img.height;
-            setFiles(prevFiles => [...prevFiles]);
+            if (isValidDimension(img.width, img.height)) {
+              file.width = img.width;
+              file.height = img.height;
+              validFiles.push(file);
+              if (validFiles.length === fileList.length) {
+                setFiles(prevFiles => [...prevFiles, ...validFiles]);
+                onFilesChange([...files, ...validFiles]);
+              }
+            } else {
+              setError(`Invalid image dimensions: ${img.width}x${img.height}. Allowed dimensions: ${allowedDimensions.map(dim => `${dim.width}x${dim.height}`).join(', ')}`);
+            }
           };
         };
       }
-      return file;
     });
-    setFiles(updatedFiles);
   };
 
   const handleFileChange = (event) => {
@@ -112,9 +138,7 @@ const ImageUpload = ({ onFilesChange,files, setFiles }) => {
       }
     }
 
-    const newFiles = [...files, ...selectedFiles];
-    updateImageDimensions(newFiles); // Update dimensions for new files
-    onFilesChange(newFiles);
+    updateImageDimensions(selectedFiles);
     setError('');
   };
 
@@ -123,9 +147,8 @@ const ImageUpload = ({ onFilesChange,files, setFiles }) => {
     setFiles(newFiles);
     onFilesChange(newFiles);
   };
-console.log(files)
+
   const handleSave = (fileToUpdate, title, width, height) => {
-    console.log({fileToUpdate, title, width, height})
     const updatedFiles = files.map((file, idx) => {
       if (file === fileToUpdate) {
         return { ...file, name: title, width, height };

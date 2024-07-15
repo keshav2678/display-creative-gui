@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Skeleton from '@mui/material/Skeleton';
 import './Creatives.css';
+import { PackageContext } from '../../context/PackageContext';
+
 
 const Creatives = () => {
+  const { selectedPackage } = useContext(PackageContext);
   const [rows, setRows] = useState([]);
   const [pageSize, setPageSize] = useState(5);
   const [page, setPage] = useState(0);
@@ -20,6 +23,7 @@ const Creatives = () => {
         params: {
           page: page + 1,
           rows_per_page: pageSize,
+          package_name:selectedPackage
         },
       });
       setRows(response.data.creatives);
@@ -33,7 +37,7 @@ const Creatives = () => {
 
   useEffect(() => {
     fetchCreatives(page, pageSize);
-  }, [page, pageSize]);
+  }, [page, pageSize,selectedPackage]);
 
   const handleDelete = async (rowId) => {
     try {

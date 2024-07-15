@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import './Trackers.css';
+import LinkModal from '../../components/AddTracker/LinkModal';
 
 const Trackers = () => {
   const { selectedPackage } = useContext(PackageContext);
@@ -22,12 +23,22 @@ const Trackers = () => {
   const [creativeOptions, setCreativeOptions] = useState([]);
   const [editTrackerData, setEditTrackerData] = useState(null);
   const [selectedRows, setSelectedRows] = useState([]);
+  const [displayUrl, setDisplayUrl] = useState()
+  const [isLinkModalOpen, setIsLinkModalOpen] = useState(false);
 
+  const handleAddTracker = (url) => {
+      setDisplayUrl(url);
+      setIsLinkModalOpen(true);
+  };
   const getCreativeOptions = async () => {
     try {
-      const response = await fetch('http://localhost:8000/get_creative_options');
-      const data = await response.json();
-      setCreativeOptions(data);
+      const response = await axios.get('http://localhost:8000/get_creative_options', {
+        params: {
+          package_name: selectedPackage,
+        },
+      });
+      console.log(response.data)
+      setCreativeOptions(response.data);
     } catch (error) {
       console.error('Error fetching creative options:', error);
     }
@@ -38,8 +49,9 @@ const Trackers = () => {
     try {
       const response = await axios.get('http://localhost:8000/get_trackers', {
         params: {
-          page: page + 1,
+          page: page+1,
           rows_per_page: pageSize,
+          package_name: selectedPackage,
         },
       });
       setRows(response.data.trackers);
@@ -53,11 +65,11 @@ const Trackers = () => {
 
   useEffect(() => {
     fetchTrackers(page, pageSize);
-  }, [page, pageSize]);
+  }, [page, pageSize,selectedPackage]);
 
   useEffect(() => {
     getCreativeOptions();
-  }, []);
+  }, [selectedPackage]);
 
   const columns = [
     { field: 'id', headerName: 'ID', flex: 0.5, minWidth: 70, renderCell: (params) => isLoading ? <Skeleton animation="wave" variant="text" width={70} /> : params.value },
@@ -152,7 +164,9 @@ const Trackers = () => {
       alert('CSV export is not supported by this browser.');
     }
   };
-
+  const handleCloseLinkModal = () => {
+    setIsLinkModalOpen(false);
+  };
 
   if (!selectedPackage) {
     return <div className="message">Please choose a package to move forward.</div>;
@@ -203,12 +217,21 @@ const Trackers = () => {
       <Modal open={isModalOpen} onClose={handleCloseModal}>
         <Box className='modal-box'>
           <AddTracker
+            fetchTrackers={fetchTrackers}
+            page={page}
+            pageSize={pageSize}
             setIsModalOpen={setIsModalOpen}
             creativeOptions={creativeOptions}
-            editTrackerData={editTrackerData}  // Pass editTrackerData to pre-fill form
+            editTrackerData={editTrackerData} 
+            handleAddTracker={handleAddTracker}
           />
         </Box>
       </Modal>
+      <LinkModal
+        open={isLinkModalOpen}
+        onClose={handleCloseLinkModal}
+        displayUrl={displayUrl}
+      />
     </div>
   );
 };

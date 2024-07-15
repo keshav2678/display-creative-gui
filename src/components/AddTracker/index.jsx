@@ -6,7 +6,7 @@ import './AddTracker.css';
 import axios from 'axios';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const AddTracker = ({ setIsModalOpen, creativeOptions, editTrackerData }) => {
+const AddTracker = ({ setIsModalOpen, creativeOptions, editTrackerData, fetchTrackers, page, pageSize, handleAddTracker }) => {
   const { selectedPackage } = useContext(PackageContext);
   const [formData, setFormData] = useState({
     campaignName: '',
@@ -24,6 +24,7 @@ const AddTracker = ({ setIsModalOpen, creativeOptions, editTrackerData }) => {
     creativeId: [],
     customTrackers: [],
   });
+
   console.log(formData)
 
   const [showCustomTracker, setShowCustomTracker] = useState(false);
@@ -31,6 +32,7 @@ const AddTracker = ({ setIsModalOpen, creativeOptions, editTrackerData }) => {
 
   useEffect(() => {
     if (editTrackerData) {
+      console.log(editTrackerData.creative_id)
       setFormData({
         campaignName: editTrackerData.campaign_name || '',
         platform: editTrackerData.platform_name || '',
@@ -44,7 +46,7 @@ const AddTracker = ({ setIsModalOpen, creativeOptions, editTrackerData }) => {
         enableBrandSafety: editTrackerData.is_brand_safety_enabled || false,
         enableAdFraud: editTrackerData.is_ad_fraud_enabled || false,
         enableDoubleSpotting: editTrackerData.is_double_spotting_enabled || false,
-        creativeId: editTrackerData.creative_id ? editTrackerData.creative_id.split(',') : [],
+        creativeId: editTrackerData.creative_id ? editTrackerData.creative_id.toString().split(',') : [],
         customTrackers: editTrackerData.custom_trackers || [],
       });
     }
@@ -85,15 +87,18 @@ const AddTracker = ({ setIsModalOpen, creativeOptions, editTrackerData }) => {
           data: requestData,
         });
         console.log('Updated tracker:', response.data);
+        handleAddTracker(response.data.display_url)
       } else {
         const response = await axios.post('http://localhost:8000/add_tracker', {
           data: requestData,
         });
         console.log('Added tracker:', response.data);
+        handleAddTracker(response.data.display_url)
       }
 
       setIsModalOpen(false);
       resetFormData();
+      fetchTrackers(page, pageSize);
     } catch (error) {
       console.error('Failed to add/update tracker:', error);
       setIsModalOpen(false);
@@ -382,9 +387,9 @@ const AddTracker = ({ setIsModalOpen, creativeOptions, editTrackerData }) => {
                   setShowCustomTracker(false)
                 }} />
               </IconButton>
-              {/* <Button variant="contained" color="primary" onClick={handleAddCustomTracker} style={{ height: '40px' }}>
+              <Button variant="contained" color="primary" onClick={handleAddCustomTracker} style={{ height: '40px' }}>
                 Add
-              </Button> */}
+              </Button>
             </div>
           )}
         </div>

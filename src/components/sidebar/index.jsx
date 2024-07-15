@@ -34,9 +34,9 @@ const Sidebar = () => {
           onChange={handlePackageChange}
         >
           <option value="">Select Package</option>
-          <option value="package1">Package 1</option>
-          <option value="package2">Package 2</option>
-          <option value="package3">Package 3</option>
+          <option value="package_1">Package 1</option>
+          <option value="package_2">Package 2</option>
+          <option value="package_3">Package 3</option>
         </select>
       </div>
       <ul className="menu-items">

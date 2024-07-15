@@ -98,14 +98,14 @@ const ImagePreview = ({ file, onDelete, onSave }) => {
           </>
         )}
       </div>
-      <div className="actions">
+      {/* <div className="actions">
         {editing ? (
           <FaCheck onClick={handleSaveClick} />
         ) : (
           <MdEdit onClick={handleEditClick} />
         )}
         <MdDelete onClick={onDelete} />
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -95,3 +95,85 @@
   .custom-trackers-field > div > div{
     height: 51px;
   }
+
+  .link-modal-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+    width: 48%;
+  }
+  
+  .link-modal-box .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ebedf9;
+    padding-bottom: 15px;
+  }
+
+  .link-modal-box .header span {
+    font-size: 21px;
+    font-weight: 600;
+  }
+
+  .field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #757171;
+    border-radius: 4px;
+    padding: 0 5px;
+    margin: 12px 0 -5px 0;
+    height: 45px;
+  }
+  
+  .url-icon {
+    width: 50px !important;
+    font-size: 18px !important;
+    text-align: center;
+  }
+  
+  .input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 15px;
+  }
+  
+  .copy-button {
+    color: #fff !important;
+    padding: 5px 18px !important;
+    background: #7d2ae8 !important;
+    transition: background 0.1s linear !important;
+  }
+  
+  .copy-button:hover {
+    background: #8d39fa;
+  }
+  
+  .close-button {
+    color: #878787;
+    background: #f3f3f3;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .close-button:hover {
+    background: #ebedf9;
+  }
+  .field button {
+    outline: none;
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    transition: background 0.1s linear, border-color 0.1s linear, color 0.1s linear;
+  }
+  
