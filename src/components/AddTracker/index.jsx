@@ -83,7 +83,7 @@ const AddTracker = ({ setIsModalOpen, creativeOptions, editTrackerData, fetchTra
       };
 
       if (editTrackerData) {
-        const response = await axios.put(`http://localhost:8000/update_tracker/${editTrackerData.id}`, {
+        const response = await axios.put(`https://qt8flde415.execute-api.ap-south-1.amazonaws.com/ecute-api.ap-south-1.amazonaws.com/ecute-api.ap-south-1.amazonaws.com//update_tracker/${editTrackerData.id}`, {
           data: requestData,
         });
         console.log('Updated tracker:', response.data);

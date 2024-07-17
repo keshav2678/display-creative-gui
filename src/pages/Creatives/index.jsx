@@ -19,7 +19,7 @@ const Creatives = () => {
   const fetchCreatives = async (page, pageSize) => {
     setIsLoading(true);
     try {
-      const response = await axios.get('http://localhost:8000/get_creatives', {
+      const response = await axios.get('https://qt8flde415.execute-api.ap-south-1.amazonaws.com/get_creatives', {
         params: {
           page: page + 1,
           rows_per_page: pageSize,
@@ -41,7 +41,7 @@ const Creatives = () => {
 
   const handleDelete = async (rowId) => {
     try {
-      const response = await axios.delete(`http://localhost:8000/delete_creative/${rowId}`);
+      const response = await axios.delete(`https://qt8flde415.execute-api.ap-south-1.amazonaws.com//delete_creative/${rowId}`);
       console.log('Deleted creative:', response.data);
       fetchCreatives(page, pageSize);
     } catch (error) {

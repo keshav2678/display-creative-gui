@@ -32,7 +32,7 @@ const Trackers = () => {
   };
   const getCreativeOptions = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/get_creative_options', {
+      const response = await axios.get('https://qt8flde415.execute-api.ap-south-1.amazonaws.com/get_creative_options', {
         params: {
           package_name: selectedPackage,
         },
@@ -47,7 +47,7 @@ const Trackers = () => {
   const fetchTrackers = async (page, pageSize) => {
     setIsLoading(true);
     try {
-      const response = await axios.get('http://localhost:8000/get_trackers', {
+      const response = await axios.get('https://qt8flde415.execute-api.ap-south-1.amazonaws.com/get_trackers', {
         params: {
           page: page+1,
           rows_per_page: pageSize,
@@ -112,7 +112,7 @@ const Trackers = () => {
 
   const handleDelete = async (rowId) => {
     try {
-      const response = await axios.delete(`http://localhost:8000/delete_tracker/${rowId}`);
+      const response = await axios.delete(`https://qt8flde415.execute-api.ap-south-1.amazonaws.com//delete_tracker/${rowId}`);
       console.log('Deleted campaign:', response.data);
       fetchTrackers(page, pageSize);
     } catch (error) {

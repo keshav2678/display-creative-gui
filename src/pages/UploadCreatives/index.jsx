@@ -32,7 +32,7 @@ const UploadCreatives = () => {
     formData.append('package_name', selectedPackage); // Ensure selectedPackage is correctly set
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/upload_creative', formData, {
+      const response = await axios.post('https://qt8flde415.execute-api.ap-south-1.amazonaws.com/upload_creative', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
