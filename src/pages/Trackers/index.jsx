@@ -65,10 +65,12 @@ const Trackers = () => {
 
   useEffect(() => {
     fetchTrackers(page, pageSize);
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, pageSize,selectedPackage]);
 
   useEffect(() => {
     getCreativeOptions();
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPackage]);
 
   const columns = [

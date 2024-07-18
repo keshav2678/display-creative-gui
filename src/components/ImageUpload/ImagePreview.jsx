@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 
 const ImagePreview = ({ file, onDelete, onSave }) => {
   const [imageUrl, setImageUrl] = useState('');
-  const [editing, setEditing] = useState(false);
+  const [editing] = useState(false);
   const [title, setTitle] = useState(file.name);
   const [width, setWidth] = useState(file.width);
   const [height, setHeight] = useState(file.height);

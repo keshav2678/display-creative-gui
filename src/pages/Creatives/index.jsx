@@ -37,6 +37,7 @@ const Creatives = () => {
 
   useEffect(() => {
     fetchCreatives(page, pageSize);
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, pageSize,selectedPackage]);
 
   const handleDelete = async (rowId) => {

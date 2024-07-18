@@ -23,6 +23,7 @@ const Sidebar = () => {
     if (storedPackage) {
       setSelectedPackage(storedPackage);
     }
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
