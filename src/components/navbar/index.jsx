@@ -1,15 +1,15 @@
-import React, { useContext } from 'react';
-import { PackageContext } from '../../context/PackageContext';
+import React from 'react';
+// import { PackageContext } from '../../context/PackageContext';
 import './Navbar.css';
 import logo from '../../assets/logoWhite.png'
 import ProfileCard from '../profile';
 
 const Navbar = () => {
-  const { selectedPackage, setSelectedPackage } = useContext(PackageContext);
+  // const { selectedPackage, setSelectedPackage } = useContext(PackageContext);
 
-  const handlePackageChange = (e) => {
-    setSelectedPackage(e.target.value);
-  };
+  // const handlePackageChange = (e) => {
+  //   setSelectedPackage(e.target.value);
+  // };
 
   return (
     <nav className="navbar">

@@ -18,7 +18,6 @@ const UploadCreatives = () => {
       alert('Please upload at least one image.');
       return;
     }
-    const creativeNames = {}
 
     const formData = new FormData();
     files.forEach((file, index) => {

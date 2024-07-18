@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { FaCheck } from 'react-icons/fa';
-import { MdDelete, MdEdit } from "react-icons/md";
+// import { FaCheck } from 'react-icons/fa';
+// import { MdDelete, MdEdit } from "react-icons/md";
 
 const ImagePreview = ({ file, onDelete, onSave }) => {
   const [imageUrl, setImageUrl] = useState('');
@@ -34,14 +34,14 @@ const ImagePreview = ({ file, onDelete, onSave }) => {
     }
   }, [file]);
 
-  const handleEditClick = () => {
-    setEditing(true);
-  };
+  // const handleEditClick = () => {
+  //   setEditing(true);
+  // };
 
-  const handleSaveClick = () => {
-    setEditing(false);
-    onSave(file, title, width, height); // Pass updated width and height to parent
-  };
+  // const handleSaveClick = () => {
+  //   setEditing(false);
+  //   onSave(file, title, width, height); // Pass updated width and height to parent
+  // };
 
   return (
     <div className="image-preview">

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PackageContext } from '../../context/PackageContext';
-import { FaImage, FaPlusCircle, FaListAlt, FaSignOutAlt } from 'react-icons/fa';
+import { FaImage, FaListAlt } from 'react-icons/fa';
 import { FaUpload } from "react-icons/fa6";
 import { TbLayoutSidebarLeftCollapse, TbLayoutSidebarRightCollapse } from 'react-icons/tb';
 import './Sidebar.css';
