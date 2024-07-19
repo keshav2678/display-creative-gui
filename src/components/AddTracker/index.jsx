@@ -89,7 +89,7 @@ const AddTracker = ({ setIsModalOpen, creativeOptions, editTrackerData, fetchTra
         console.log('Updated tracker:', response.data);
         handleAddTracker(response.data.display_url)
       } else {
-        const response = await axios.post('http://localhost:8000/add_tracker', {
+        const response = await axios.post('https://qt8flde415.execute-api.ap-south-1.amazonaws.com/add_tracker', {
           data: requestData,
         });
         console.log('Added tracker:', response.data);
@@ -372,12 +372,14 @@ const AddTracker = ({ setIsModalOpen, creativeOptions, editTrackerData, fetchTra
                   required
                 />
               </div>
-              <IconButton            sx={{
+              <IconButton        sx={{
               ml: 1,
               "&.MuiButtonBase-root:hover": {
                 bgcolor: "transparent"
               }
-            }} aria-label="delete">
+            }} aria-label="delete" 
+            className="ct-delete-icon"
+            >
                 <DeleteIcon onClick={() => {
                   setCustomTracker({ type: 'Click Through Tracker', url: '' })
                   setFormData((prevState) => ({
@@ -387,9 +389,9 @@ const AddTracker = ({ setIsModalOpen, creativeOptions, editTrackerData, fetchTra
                   setShowCustomTracker(false)
                 }} />
               </IconButton>
-              <Button variant="contained" color="primary" onClick={handleAddCustomTracker} style={{ height: '40px' }}>
+              {/* <Button variant="contained" color="primary" onClick={handleAddCustomTracker} style={{ height: '40px' }}>
                 Add
-              </Button>
+              </Button> */}
             </div>
           )}
         </div>

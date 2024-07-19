@@ -176,4 +176,7 @@
     border: 2px solid transparent;
     transition: background 0.1s linear, border-color 0.1s linear, color 0.1s linear;
   }
-  
+  .ct-delete-icon svg{
+    position: relative;
+    top: -15%;
+  }

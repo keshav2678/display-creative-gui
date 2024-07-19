@@ -4,7 +4,6 @@
   }
   
   .upload-creatives button {
-    padding: 10px 20px;
     background-color: #1F4690;
     color: white;
     border: none;
@@ -14,9 +13,10 @@
   .btn-container {
     display: flex;
     align-self: end;
-    margin-top: 32px;
+    margin-top: 10px;
   }
   .btn {
+    padding: 10px 22px;
     /* width: 7.5%; */
   }
   .upload-creatives button:hover {
