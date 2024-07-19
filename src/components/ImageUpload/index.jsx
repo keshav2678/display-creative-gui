@@ -2,35 +2,81 @@ import React, { useState } from 'react';
 import ImagePreview from './ImagePreview';
 import preview from '../../assets/preview.png';
 import './ImageUpload.css';
+import { Button, Modal, Box, Typography, Grid, IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 const ImageUpload = ({ onFilesChange, files, setFiles }) => {
   const [error, setError] = useState('');
   const [url, setUrl] = useState('');
   const [dragging, setDragging] = useState(false);
   const [title, setTitle] = useState('');
+  const [openModal, setOpenModal] = useState(false);
 
-  const allowedDimensions = [
-    { width: 468, height: 60 },
-    { width: 250, height: 250 },
-    { width: 728, height: 90 },
-    { width: 970, height: 90 },
-    { width: 200, height: 200 },
-    { width: 320, height: 100 },
-    { width: 120, height: 600 },
-    { width: 160, height: 600 },
-    { width: 300, height: 600 },
-    { width: 300, height: 250 },
-    { width: 336, height: 280 },
-  ];
+  const allowedDimensions = {
+    'Square and Rectangle': [
+      { width: 200, height: 200 },
+      { width: 250, height: 250 },
+      { width: 300, height: 250 },
+      { width: 300, height: 300 },
+      { width: 320, height: 320 },
+      { width: 336, height: 280 },
+      { width: 1200, height: 1200 }, 
+      { width: 1200, height: 1500 },
+      { width: 1200, height: 628 },
+    ],
+    Skyscraper: [
+      { width: 120, height: 600 },
+      { width: 160, height: 600 },
+      { width: 300, height: 600 },
+      { width: 300, height: 1050 },
+    ],
+    Leaderboard: [
+      { width: 468, height: 60 },
+      { width: 728, height: 90 },
+      { width: 800, height: 250 },
+      { width: 970, height: 90 },
+      { width: 970, height: 250 },
+      { width: 1200, height: 300 },
+    ],
+    Mobile: [
+      { width: 300, height: 50 },
+      { width: 300, height: 100 },
+      { width: 320, height: 50 },
+      { width: 320, height: 100 },
+      { width: 320, height: 480 },
+      { width: 360, height: 592 },
+      { width: 360, height: 640 },
+      { width: 375, height: 667 },
+      { width: 600, height: 600 },
+    ],
+    Landscape: [
+      { width: 600, height: 314 },
+      { width: 1200, height: 628 },
+      { width: 1200, height: 1200 },
+    ],
+    Portrait: [
+      { width: 320, height: 400 },
+      { width: 480, height: 600 },
+      { width: 1200, height: 1500 },
+      { width: 960, height: 1200 },
+    ],
+    Logo: [
+      { width: 128, height: 128 },
+      { width: 144, height: 144 },
+      { width: 512, height: 128 },
+      { width: 1200, height: 1200 },
+      { width: 1200, height: 300 },
+    ]
+  };
 
   const isValidDimension = (width, height) => {
-    return allowedDimensions.some(dim => dim.width === width && dim.height === height);
+    return Object.values(allowedDimensions).flat().some(dim => dim.width === width && dim.height === height);
   };
 
   const updateImageDimensions = (fileList) => {
     const validFiles = [];
 
-    fileList.forEach((file, index) => {
+    fileList.forEach((file) => {
       if (file.type === 'file') {
         const reader = new FileReader();
         reader.readAsDataURL(file.file);
@@ -47,7 +93,7 @@ const ImageUpload = ({ onFilesChange, files, setFiles }) => {
                 onFilesChange([...files, ...validFiles]);
               }
             } else {
-              setError(`Invalid image dimensions: ${img.width}x${img.height}. Allowed dimensions: ${allowedDimensions.map(dim => `${dim.width}x${dim.height}`).join(', ')}`);
+              setError(`Invalid image dimensions: ${img.width}x${img.height}.`);
             }
           };
         };
@@ -159,6 +205,9 @@ const ImageUpload = ({ onFilesChange, files, setFiles }) => {
     onFilesChange(updatedFiles);
   };
 
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
+
   return (
     <div className="image-upload">
       <div
@@ -183,7 +232,14 @@ const ImageUpload = ({ onFilesChange, files, setFiles }) => {
           </div>
         </label>
       </div>
-      {error && <div className="error-message">{error}</div>}
+      {error && (
+        <div className="error-message">
+          <p>{error}</p>
+          <Button variant="outlined" onClick={handleOpenModal}>
+            Show Allowed Dimensions
+          </Button>
+        </div>
+      )}
       <div className="separator">or</div>
       <h3>Import From URL</h3>
       <div className="url-upload">
@@ -199,7 +255,9 @@ const ImageUpload = ({ onFilesChange, files, setFiles }) => {
           value={title}
           onChange={handleTitleChange}
         />
-        <button onClick={handleUrlUpload}>Import</button>
+        <Button variant="contained" color="primary" onClick={handleUrlUpload}>
+          Import
+        </Button>
       </div>
       <div className="file-previews">
         {files.map((file, index) => (
@@ -211,6 +269,62 @@ const ImageUpload = ({ onFilesChange, files, setFiles }) => {
           />
         ))}
       </div>
+
+      <Modal
+        open={openModal}
+        onClose={handleCloseModal}
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
+        className='dimension-modal'
+      >
+        <Box sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '90%',
+          maxWidth: 700,
+          bgcolor: 'background.paper',
+          boxShadow: 24,
+          p: 4,
+          borderRadius: 2,
+          overflowY: 'auto',
+        }}>
+          <IconButton
+            onClick={handleCloseModal}
+            sx={{ position: 'absolute', top: 8, right: 8 }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <Typography id="modal-title" variant="h5" component="h2" gutterBottom>
+            Allowed Dimensions 
+          </Typography> 
+          <Box sx={{ mt: 2 }}>
+            {Object.entries(allowedDimensions).map(([category, dimensions]) => (
+              <Box key={category} sx={{ mb: 3 }}>
+                <Typography variant="h6" component="div" sx={{ mb: 1 }}>
+                  {category}
+                </Typography>
+                <Grid container spacing={2}>
+                  {dimensions.map((dim, index) => (
+                    <Grid item xs={12} sm={6} md={4} key={index}>
+                      <Box sx={{
+                        border: '1px solid #ddd',
+                        borderRadius: 1,
+                        p: 1,
+                        textAlign: 'center',
+                        bgcolor: '#f9f9f9',
+                      }}>
+                        <Typography variant="body2">{`${dim.width} × ${dim.height}`}</Typography>
+                      </Box>
+                    </Grid>
+                  ))}
+                </Grid>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      </Modal>
     </div>
   );
 };
