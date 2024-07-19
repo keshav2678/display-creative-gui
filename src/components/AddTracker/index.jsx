@@ -133,14 +133,14 @@ const AddTracker = ({ setIsModalOpen, creativeOptions, editTrackerData, fetchTra
     }));
   };
 
-  const handleAddCustomTracker = () => {
-    setFormData((prevState) => ({
-      ...prevState,
-      customTrackers: [...prevState.customTrackers, customTracker],
-    }));
-    setCustomTracker({ type: 'Click Through Tracker', url: '' });
-    setShowCustomTracker(false);
-  };
+  // const handleAddCustomTracker = () => {
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     customTrackers: [...prevState.customTrackers, customTracker],
+  //   }));
+  //   setCustomTracker({ type: 'Click Through Tracker', url: '' });
+  //   setShowCustomTracker(false);
+  // };
 
   const inputStyles = {
     '& .MuiInputBase-input': {
