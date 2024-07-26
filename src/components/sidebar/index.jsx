@@ -13,6 +13,7 @@ const Sidebar = () => {
   const [packages, setPackages] = useState([]);
 
   const handlePackageChange = (e) => {
+    console.log(e.target.value)
     setSelectedPackage(e.target.value);
   };
 
@@ -33,7 +34,6 @@ const Sidebar = () => {
 
     fetchPackages();
 
-    // Initialize selected package from localStorage on component mount
     const storedPackage = localStorage.getItem('selectedPackage');
     if (storedPackage) {
       setSelectedPackage(storedPackage);
@@ -51,7 +51,7 @@ const Sidebar = () => {
         >
           <option value="">Select Package</option>
           {packages.map(pkg => (
-            <option key={pkg.id} value={pkg.id}>{pkg.package_name}</option>
+            <option key={pkg.id} value={pkg.package_name}>{pkg.package_name}</option>
           ))}
         </select>
       </div>
