@@ -23,6 +23,8 @@ const ImageUpload = ({ onFilesChange, files, setFiles }) => {
       { width: 1200, height: 1200 }, 
       { width: 1200, height: 1500 },
       { width: 1200, height: 628 },
+      { width: 1080, height: 1080 },
+      { width: 1920, height: 1080 },
     ],
     Skyscraper: [
       { width: 120, height: 600 },
