@@ -77,6 +77,7 @@ const Creatives = () => {
         pageSize={pageSize}
         rowCount={rowCount}
         paginationMode="server"
+        disableRowSelectionOnClick
         onPaginationModelChange={newPage => {
           const { page, pageSize } = newPage;
           setPage(page);
